@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DataFlow Backend
 
 Serviço HTTP do DataFlow, construído com Node.js, TypeScript, Express e CORS.
@@ -34,3 +35,7 @@ src/
 ```
 
 O fluxo esperado é `route → controller → service → repository → database`.
+=======
+# DataFlow-backend
+## DataFlow
+>>>>>>> origin/Develop
