@@ -16,7 +16,7 @@ npm run build
 npm start
 ```
 
-Por padrão, o serviço fica disponível em `http://localhost:3231`. A rota
+Por padrão, o serviço fica disponível em `http://localhost:11001`. A rota
 `GET /health` pode ser usada para verificar se ele está respondendo.
 
 ## Organização

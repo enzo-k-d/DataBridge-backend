@@ -4,8 +4,8 @@ import express from "express";
 import healthRoutes from "./routes/healthRoutes";
 
 const app = express();
-const port = Number(process.env.PORT) || 3231;
-const frontendOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
+const port = Number(process.env.PORT) || 11001;
+const frontendOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:11000";
 
 app.use(
   cors({
