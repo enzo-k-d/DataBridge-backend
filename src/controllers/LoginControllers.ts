@@ -1,39 +1,35 @@
 import type { Request, Response } from "express";
 
-import { loginService } from "../services/LoginService";
+import loginService  from "../services/LoginService";
 
-class LoginController {
-  async handle(request: Request, response: Response): Promise<Response> {
-    const { email, senha } = request.body;
+async function loginController(request: Request, response: Response): Promise<Response> {
+  const { email, password } = request.body;
 
-    if (typeof email !== "string" || email.trim() === "" || typeof senha !== "string" || senha === "") {
-      return response.status(400).json({message: "E-mail e senha são obrigatórios.",});
-    }
+  // Verifica se o e-mail e a senha foram fornecidos
+  if (typeof email !== "string" || email.trim() === "" || typeof password !== "string" || password   === "") {
+    return response.status(400).json({message: "E-mail e senha são obrigatórios.",});
+  }
 
-    try {
-      const resultado = await loginService.execute({
-        email: email.trim(),
-        senha,
-      });
+  // Verifica se o e-mail existe pelo service
+  try {
+    const resultado = await loginService({
+      email: email.trim(),
+      password,
+    });
 
-      if (!resultado) {
-        return response.status(401).json({
-          message: "E-mail ou senha inválidos.",
-        });
-      }
+    // Se o usuario não existir
+    if (!resultado.autenticado)
+      return response.status(401).json({ message: "E-mail ou senha inválidos."}); 
+    
+    // Se o usuario existir
+    return response.status(200).json({resultado, });
 
-      return response.status(200).json({
-        message: "Login realizado com sucesso.",
-        ...resultado,
-      });
-    } catch (error) {
-      console.error("Erro ao realizar login:", error);
+  // Caso ele não consegua se conectar com o banco de dados ou outro erro not esperado
+  } catch (error) {
+    console.error("Erro ao realizar login:", error);
 
-      return response.status(500).json({
-        message: "Erro interno do servidor.",
-      });
-    }
+    return response.status(500).json({message: "Erro interno do servidor.",});
   }
 }
 
-export const loginController = new LoginController();
+export default loginController;

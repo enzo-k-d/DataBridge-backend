@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { LoginControllers } from "../controllers/HealthController";
+import loginController from "../controllers/LoginControllers";
 
 const loginRoutes = Router();
-loginRoutes.post("/auth/login", loginController.authenticate);
+loginRoutes.post("/auth/login", loginController);
 
 export default loginRoutes;
     

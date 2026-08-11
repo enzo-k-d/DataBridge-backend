@@ -1,6 +1,9 @@
-type LoginInterface = {
+export type LoginInterface = {
     email: string
     password: string
 }
 
-export default LoginInterface;
+export type LoginResult = {
+    message: string
+    autenticado: boolean
+}
