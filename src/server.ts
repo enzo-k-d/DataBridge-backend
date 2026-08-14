@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 
 import loginRoutes from "./routes/LoginRoutes";
+import CadastroRoutes from "./routes/CadastroRoutes";
 
 const app = express();
 const port = Number(process.env.PORT) || 11001;
@@ -19,6 +20,7 @@ app.use(
 app.use(express.json());
 
 app.use(loginRoutes);
+app.use(CadastroRoutes);
 
 app.listen(port, () => {
   console.log(`DataFlow backend rodando em http://localhost:${port}`);
