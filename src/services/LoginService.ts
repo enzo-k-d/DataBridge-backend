@@ -1,27 +1,20 @@
-import jwt from "jsonwebtoken";
-
 import type { LoginInterface, LoginResult } from "../interfaces/Login";
+import { gerarToken } from "../middlewares/auth/Token";
 
 async function loginService({email, password}:LoginInterface): Promise<LoginResult> {
-    
-    if (email !== "root@gmail.com" || password !== "root") return {
+    // Usuário provisório enquanto o banco de dados ainda não está conectado
+    const usuario = {
+        id: "c137",
+        email: "root@gmail.com",
+        password: "root",
+    };
+
+    if (email !== usuario.email || password !== usuario.password) return {
         message: "E-mail ou senha inválidos.",
         autenticado: false,
     };
 
-    const jwtSecret = process.env.JWT_SECRET;
-
-    // Impede que o backend gere tokens sem uma chave configurada
-    if (!jwtSecret) throw new Error("JWT_SECRET não configurada.");
-
-    const token = jwt.sign(
-    {email},
-    jwtSecret,
-    {
-        subject: "1",
-        expiresIn: "30d",
-    },
-);
+    const token = gerarToken(usuario.id);
 
     return {
         message: "Login realizado com sucesso.",
