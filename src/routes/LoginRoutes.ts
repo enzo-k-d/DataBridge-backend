@@ -13,4 +13,3 @@ loginRoutes.get("/auth/validate", authMiddleware, (_request, response) => {
 });
 
 export default loginRoutes;
-    

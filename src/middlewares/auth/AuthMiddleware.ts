@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
-import { validarToken } from "./Token";
+import { validarToken } from "./Jwt";
 
 function extrairBearerToken(authorization: string | undefined): string | null {
   if (!authorization)

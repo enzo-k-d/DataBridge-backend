@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import type { CadastroInterface, CadastroResult } from "../interfaces/Cadastro";
+import type { CadastroInterface, CadastroResult, Cadastro } from "../interfaces/Cadastro";
 
 async function cadastroService({ email, password, nome }: CadastroInterface): Promise<CadastroResult> {
   const jwtSecret = process.env.JWT_SECRET;

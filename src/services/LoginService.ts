@@ -1,5 +1,5 @@
 import type { LoginInterface, LoginResult } from "../interfaces/Login";
-import { gerarToken } from "../middlewares/auth/Token";
+import { gerarToken } from "../middlewares/auth/Jwt";
 
 async function loginService({email, password}:LoginInterface): Promise<LoginResult> {
     // Usuário provisório enquanto o banco de dados ainda não está conectado

@@ -2,9 +2,13 @@ import type { Request, Response } from "express";
 import CadastroService from "../services/CadastroService";
 
 async function cadastroController(request: Request, response: Response): Promise<Response> {
-  const { nome, email, senha } = request.body;
+  const { nome, email, password } = request.body;
 
-  if (typeof email !== "string" || email.trim() === "" || typeof senha !== "string" || senha.trim() === "") {
+  if (
+    typeof nome !== "string" || nome.trim() === "" ||
+    typeof email !== "string" || email.trim() === "" ||
+    typeof password !== "string" || password === ""
+  ) {
     return response.status(400).json({message: "E-mail, senha e nome são obrigatórios.",});
   }
 
@@ -12,7 +16,7 @@ async function cadastroController(request: Request, response: Response): Promise
   try {
     const resposta = await CadastroService({
       email: email.trim(),
-      password: senha.trim(),
+      password,
       nome: nome.trim(),
     });
 
