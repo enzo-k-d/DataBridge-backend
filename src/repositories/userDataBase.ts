@@ -2,11 +2,11 @@ import { DataBase } from "../database/pool";
 import { IEntidade, BasicDataBase } from "./BasicDataBase";
 
 export interface IUser extends IEntidade {
-    nome: string,
+    name: string,
     email: string,
-    senha: string,
-    data_criacao: Date,
-    data_atualizacao: Date
+    pass: string,
+    create_at: Date,
+    last_login_at: Date
 }
 
 export class userDataBase<T extends IUser> extends BasicDataBase<T> {
